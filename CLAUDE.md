@@ -11,7 +11,7 @@
 
 **Branch**: `feature/10-test`
 **Main Branch**: `hotfix` (use for PRs)
-**Status**: Steps 1-3 Complete ✅, All Steps Validated ✅
+**Status**: Steps 1-4 Complete ✅, All Steps Validated ✅
 
 ### Story Definition
 Original requirement: "need reporting data" (vague)
@@ -43,11 +43,18 @@ Original requirement: "need reporting data" (vague)
    - OAuth2 authentication, JSON API v1.0 format, Slim 3.8 integration
    - Validation document added (STEP-3-VALIDATION.md, 865 lines)
 
-4. **Dashboard Dashlet** (Next Step)
-   - Files: `custom/modules/Home/Dashlets/OpportunityReportDashlet/`
-   - UI component for internal users
+4. **Dashboard Dashlet** ✅ COMPLETED & VALIDATED
+   - Main class: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.php` (330 lines)
+   - Template: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.tpl` (122 lines)
+   - Metadata: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.meta.php` (19 lines)
+   - Language: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.en_us.lang.php` (46 lines)
+   - Registration: `custom/Extension/modules/Home/Ext/Dashlets/opportunity_report_dashlet.php` (19 lines)
+   - Filter form (4 filters: sales_stage, date_period, amount_min, my_opportunities)
+   - Data table with opportunity records, summary section with aggregations
+   - Direct backend service integration (no OAuth2 needed for internal context)
+   - Total: 536 lines across 5 files
 
-5. **Testing & Validation** (Final Step)
+5. **Testing & Validation** (Next Step)
    - Unit tests, integration tests, acceptance tests
 
 ### Key Technical Decisions
@@ -60,6 +67,7 @@ Original requirement: "need reporting data" (vague)
 | Security | Module + record ACL | Leverage SuiteCRM security |
 | Aggregation | SQL GROUP BY | Performance, accuracy |
 | Backend | Custom service | AOR_Reports is UI-first, not API-first |
+| Dashlet Data Access | Direct backend service call | More appropriate than OAuth2 for internal context |
 
 ## Code Quality Standards
 
@@ -424,19 +432,16 @@ try {
 
 ## Next Steps for Story #10
 
-### Immediate Actions (Step 4)
-1. Create Dashboard Dashlet for internal users
-   - `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.php`
-   - `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.tpl` (Smarty)
-   - `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.meta.php`
-2. Implement dashlet features:
-   - Configuration form for filters
-   - AJAX call to V8 API endpoint
-   - Display aggregated data (charts/tables)
-   - Responsive design
-
-### Future Steps
-- Step 5: Comprehensive Testing (Unit + API + Acceptance)
+### Immediate Actions (Step 5)
+1. Create comprehensive testing suite:
+   - Unit tests for OpportunityReportService backend logic
+   - Integration tests for API endpoint and dashlet
+   - Acceptance tests for end-to-end workflows
+2. Validate all functionality:
+   - Filter combinations and edge cases
+   - ACL enforcement across user roles
+   - Performance testing with large datasets
+   - Security testing (SQL injection, XSS, ACL bypass)
 
 ## Important Notes
 
@@ -476,6 +481,6 @@ try {
 
 ---
 
-**Last Updated**: 2026-02-23 (Story #10 Step 1 Validated, Code Compilation Verified)
-**Document Size**: 14.4KB (within 30KB limit)
-**Code Status**: All 2,144 lines compiled successfully, PSR-12 compliant
+**Last Updated**: 2026-02-23 (Story #10 Steps 1-4 Complete, Step 5 Pending)
+**Document Size**: 15.1KB (within 30KB limit)
+**Code Status**: All 2,680 lines compiled successfully, PSR-12 compliant
