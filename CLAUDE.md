@@ -44,7 +44,7 @@ Original requirement: "need reporting data" (vague)
    - Validation document added (STEP-3-VALIDATION.md, 865 lines)
 
 4. **Dashboard Dashlet** ✅ COMPLETED & VALIDATED
-   - Main class: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.php` (330 lines)
+   - Main class: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.php` (339 lines)
    - Template: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.tpl` (122 lines)
    - Metadata: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.meta.php` (19 lines)
    - Language: `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.en_us.lang.php` (46 lines)
@@ -52,7 +52,7 @@ Original requirement: "need reporting data" (vague)
    - Filter form (4 filters: sales_stage, date_period, amount_min, my_opportunities)
    - Data table with opportunity records, summary section with aggregations
    - Direct backend service integration (no OAuth2 needed for internal context)
-   - Total: 536 lines across 5 files
+   - Total: 545 lines across 5 files (4 PHP + 1 Smarty template)
 
 5. **Testing & Validation** (Next Step)
    - Unit tests, integration tests, acceptance tests
@@ -482,5 +482,5 @@ try {
 ---
 
 **Last Updated**: 2026-02-23 (Story #10 Steps 1-4 Complete, Step 5 Pending)
-**Document Size**: 15.1KB (within 30KB limit)
-**Code Status**: All 2,680 lines compiled successfully, PSR-12 compliant
+**Document Size**: 15.1KB (50% of 30KB limit)
+**Code Status**: All 2,435 lines compiled successfully, PSR-12 compliant
