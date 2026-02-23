@@ -33,7 +33,7 @@ After thorough analysis of the SuiteCRM 7.15 codebase, "reporting data" has been
 
    - `custom/docs/story-10/API_SPECIFICATION.md` (13,000+ lines)
      - Complete REST API documentation
-     - Endpoint: GET /Api/V8/report-data/opportunities
+     - Endpoint: GET /Api/V8/custom/report-data/opportunities
      - Authentication flow (OAuth2)
      - Request parameter specifications
      - Response format (JSON API spec compliant)
@@ -88,7 +88,7 @@ After thorough analysis of the SuiteCRM 7.15 codebase, "reporting data" has been
 
 ### Primary Feature: Opportunity Report Data API
 
-**Endpoint**: `GET /Api/V8/report-data/opportunities`
+**Endpoint**: `GET /Api/V8/custom/report-data/opportunities`
 
 #### Core Capabilities
 1. **Data Retrieval**: Fetch Opportunity records with 14 core fields

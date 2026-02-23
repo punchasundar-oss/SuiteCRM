@@ -11,7 +11,7 @@
 
 **Branch**: `feature/10-test`
 **Main Branch**: `hotfix` (use for PRs)
-**Status**: Step 2 Complete ✅
+**Status**: Step 3 Complete ✅
 
 ### Story Definition
 Original requirement: "need reporting data" (vague)
@@ -23,7 +23,7 @@ Original requirement: "need reporting data" (vague)
 1. **Requirements Clarification** ✅ COMPLETED
    - Created comprehensive documentation (84KB across 4 files)
    - Locked down requirements: Opportunities module, 12 filters, OAuth2, JSON API v1.0 spec
-   - Endpoint: `GET /Api/V8/report-data/opportunities`
+   - Endpoint: `GET /Api/V8/custom/report-data/opportunities`
 
 2. **Backend Service** ✅ COMPLETED
    - File: `custom/lib/ReportingData/OpportunityReportService.php` (1,245 lines)
@@ -31,15 +31,20 @@ Original requirement: "need reporting data" (vague)
    - ACL enforcement, team security, parameterized queries
    - Date period support (this_quarter, last_month, etc.)
 
-3. **V8 API Endpoint** (Next Step)
-   - Files: `custom/Api/V8/Controller/ReportDataController.php`, routes, params
-   - OAuth2 authentication, JSON API response format
+3. **V8 API Endpoint** ✅ COMPLETED
+   - Controller: `custom/Api/V8/Controller/ReportDataController.php` (95 lines)
+   - Service: `custom/Api/V8/Service/ReportDataService.php` (295 lines)
+   - Params: `custom/Api/V8/Param/ReportDataParams.php` (258 lines)
+   - Routes: `custom/application/Ext/Api/V8/Config/routes.php`
+   - DI: `custom/application/Ext/Api/V8/Config/services/` (services, controllers, params)
+   - Tests: `custom/tests/api/V8/ReportDataControllerCest.php` (469 lines, 26 tests)
+   - OAuth2 authentication, JSON API v1.0 format, Slim 3.8 integration
 
-4. **Dashboard Dashlet**
+4. **Dashboard Dashlet** (Next Step)
    - Files: `custom/modules/Home/Dashlets/OpportunityReportDashlet/`
    - UI component for internal users
 
-5. **Testing & Validation**
+5. **Testing & Validation** (Final Step)
    - Unit tests, integration tests, acceptance tests
 
 ### Key Technical Decisions
@@ -226,9 +231,11 @@ Complete documentation available:
 
 ### API Endpoint Specification
 
-**Endpoint**: `GET /Api/V8/report-data/opportunities`
+**Endpoint**: `GET /Api/V8/custom/report-data/opportunities`
 
-**Authentication**: OAuth2 bearer token (required)
+**Note**: Custom endpoints use the `/custom` prefix for upgrade safety and clear distinction from core endpoints.
+
+**Authentication**: OAuth2 bearer token (required via ResourceServerMiddleware)
 
 **Filters** (12 parameters):
 - `sales_stage`, `sales_stage_exclude` - Filter by stage(s)
@@ -248,7 +255,7 @@ Complete documentation available:
 
 **Example Request**:
 ```http
-GET /Api/V8/report-data/opportunities?date_closed_period=this_quarter&page[size]=100
+GET /Api/V8/custom/report-data/opportunities?date_closed_period=this_quarter&page[size]=100
 Authorization: Bearer {token}
 Accept: application/vnd.api+json
 ```
@@ -414,18 +421,18 @@ try {
 
 ## Next Steps for Story #10
 
-### Immediate Actions (Step 3)
-1. Create `custom/Api/V8/Controller/ReportDataController.php`
-2. Implement controller methods:
-   - `getOpportunityReport(Request $request, Response $response): Response`
-   - Wire OpportunityReportService to API layer
-   - Format JSON API v1.0 responses
-3. Create `custom/Api/V8/Param/ReportDataParams.php` for parameter validation
-4. Register routes in `custom/Api/V8/Config/routes.php`
-5. Test API endpoint with OAuth2 authentication
+### Immediate Actions (Step 4)
+1. Create Dashboard Dashlet for internal users
+   - `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.php`
+   - `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.tpl` (Smarty)
+   - `custom/modules/Home/Dashlets/OpportunityReportDashlet/OpportunityReportDashlet.meta.php`
+2. Implement dashlet features:
+   - Configuration form for filters
+   - AJAX call to V8 API endpoint
+   - Display aggregated data (charts/tables)
+   - Responsive design
 
 ### Future Steps
-- Step 4: Dashboard Dashlet + Smarty Template
 - Step 5: Comprehensive Testing (Unit + API + Acceptance)
 
 ## Important Notes

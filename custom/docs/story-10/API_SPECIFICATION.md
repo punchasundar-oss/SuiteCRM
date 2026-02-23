@@ -21,8 +21,8 @@ This document provides the complete API specification for the Opportunity Report
 | Property | Value |
 |----------|-------|
 | **Method** | GET |
-| **Path** | `/Api/V8/report-data/opportunities` |
-| **Base URL** | `https://{domain}/Api/V8/report-data/opportunities` |
+| **Path** | `/Api/V8/custom/report-data/opportunities` |
+| **Base URL** | `https://{domain}/Api/V8/custom/report-data/opportunities` |
 | **Protocol** | HTTPS (required) |
 | **Content Type** | application/vnd.api+json |
 | **Authentication** | OAuth2 Bearer Token |
@@ -88,7 +88,7 @@ scope=read
 
 **Request**:
 ```http
-GET /Api/V8/report-data/opportunities HTTP/1.1
+GET /Api/V8/custom/report-data/opportunities HTTP/1.1
 Host: suitecrm.example.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc...
 Accept: application/vnd.api+json
@@ -338,11 +338,11 @@ Response format override.
     "sort": ["-amount_usdollar", "date_closed"]
   },
   "links": {
-    "self": "/Api/V8/report-data/opportunities?page[number]=1&page[size]=50&sales_stage=Prospecting,Qualification",
-    "first": "/Api/V8/report-data/opportunities?page[number]=1&page[size]=50&sales_stage=Prospecting,Qualification",
+    "self": "/Api/V8/custom/report-data/opportunities?page[number]=1&page[size]=50&sales_stage=Prospecting,Qualification",
+    "first": "/Api/V8/custom/report-data/opportunities?page[number]=1&page[size]=50&sales_stage=Prospecting,Qualification",
     "prev": null,
-    "next": "/Api/V8/report-data/opportunities?page[number]=2&page[size]=50&sales_stage=Prospecting,Qualification",
-    "last": "/Api/V8/report-data/opportunities?page[number]=25&page[size]=50&sales_stage=Prospecting,Qualification"
+    "next": "/Api/V8/custom/report-data/opportunities?page[number]=2&page[size]=50&sales_stage=Prospecting,Qualification",
+    "last": "/Api/V8/custom/report-data/opportunities?page[number]=25&page[size]=50&sales_stage=Prospecting,Qualification"
   }
 }
 ```
@@ -401,7 +401,7 @@ Response format override.
     }
   },
   "links": {
-    "self": "/Api/V8/report-data/opportunities?group_by=sales_stage"
+    "self": "/Api/V8/custom/report-data/opportunities?group_by=sales_stage"
   }
 }
 ```
@@ -621,7 +621,7 @@ Retry-After: 3600
 
 **Request**:
 ```http
-GET /Api/V8/report-data/opportunities?date_closed_period=this_quarter&page[size]=25 HTTP/1.1
+GET /Api/V8/custom/report-data/opportunities?date_closed_period=this_quarter&page[size]=25 HTTP/1.1
 Host: suitecrm.example.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc...
 Accept: application/vnd.api+json
@@ -629,7 +629,7 @@ Accept: application/vnd.api+json
 
 **cURL**:
 ```bash
-curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?date_closed_period=this_quarter&page[size]=25" \
+curl -X GET "https://suitecrm.example.com/Api/V8/custom/report-data/opportunities?date_closed_period=this_quarter&page[size]=25" \
   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc..." \
   -H "Accept: application/vnd.api+json"
 ```
@@ -638,7 +638,7 @@ curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?date_
 
 **Request**:
 ```http
-GET /Api/V8/report-data/opportunities?amount_min=100000&probability_min=75&sales_stage=Proposal/Price Quote,Negotiation/Review&sort=-amount_usdollar HTTP/1.1
+GET /Api/V8/custom/report-data/opportunities?amount_min=100000&probability_min=75&sales_stage=Proposal/Price Quote,Negotiation/Review&sort=-amount_usdollar HTTP/1.1
 Host: suitecrm.example.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc...
 Accept: application/vnd.api+json
@@ -646,7 +646,7 @@ Accept: application/vnd.api+json
 
 **cURL**:
 ```bash
-curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?amount_min=100000&probability_min=75&sales_stage=Proposal/Price%20Quote,Negotiation/Review&sort=-amount_usdollar" \
+curl -X GET "https://suitecrm.example.com/Api/V8/custom/report-data/opportunities?amount_min=100000&probability_min=75&sales_stage=Proposal/Price%20Quote,Negotiation/Review&sort=-amount_usdollar" \
   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc..." \
   -H "Accept: application/vnd.api+json"
 ```
@@ -655,7 +655,7 @@ curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?amoun
 
 **Request**:
 ```http
-GET /Api/V8/report-data/opportunities?group_by=sales_stage&date_closed_period=this_year&sales_stage_exclude=Closed Lost HTTP/1.1
+GET /Api/V8/custom/report-data/opportunities?group_by=sales_stage&date_closed_period=this_year&sales_stage_exclude=Closed Lost HTTP/1.1
 Host: suitecrm.example.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc...
 Accept: application/vnd.api+json
@@ -663,7 +663,7 @@ Accept: application/vnd.api+json
 
 **cURL**:
 ```bash
-curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?group_by=sales_stage&date_closed_period=this_year&sales_stage_exclude=Closed%20Lost" \
+curl -X GET "https://suitecrm.example.com/Api/V8/custom/report-data/opportunities?group_by=sales_stage&date_closed_period=this_year&sales_stage_exclude=Closed%20Lost" \
   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc..." \
   -H "Accept: application/vnd.api+json"
 ```
@@ -672,7 +672,7 @@ curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?group
 
 **Request**:
 ```http
-GET /Api/V8/report-data/opportunities?assigned_user_id_current=1&format=csv HTTP/1.1
+GET /Api/V8/custom/report-data/opportunities?assigned_user_id_current=1&format=csv HTTP/1.1
 Host: suitecrm.example.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc...
 Accept: text/csv
@@ -680,7 +680,7 @@ Accept: text/csv
 
 **cURL**:
 ```bash
-curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?assigned_user_id_current=1&format=csv" \
+curl -X GET "https://suitecrm.example.com/Api/V8/custom/report-data/opportunities?assigned_user_id_current=1&format=csv" \
   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc..." \
   -H "Accept: text/csv" \
   -o my_opportunities.csv
@@ -690,7 +690,7 @@ curl -X GET "https://suitecrm.example.com/Api/V8/report-data/opportunities?assig
 
 **Request**:
 ```http
-GET /Api/V8/report-data/opportunities?group_by=assigned_user_id&date_closed_from=2026-03-01&date_closed_to=2026-03-31&sales_stage_exclude=Closed Lost,Closed Won HTTP/1.1
+GET /Api/V8/custom/report-data/opportunities?group_by=assigned_user_id&date_closed_from=2026-03-01&date_closed_to=2026-03-31&sales_stage_exclude=Closed Lost,Closed Won HTTP/1.1
 Host: suitecrm.example.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGc...
 Accept: application/vnd.api+json
@@ -721,9 +721,9 @@ X-RateLimit-Reset: 1708707600
 ### 8.3 Pagination Headers (Link)
 
 ```
-Link: </Api/V8/report-data/opportunities?page[number]=2>; rel="next",
-      </Api/V8/report-data/opportunities?page[number]=25>; rel="last",
-      </Api/V8/report-data/opportunities?page[number]=1>; rel="first"
+Link: </Api/V8/custom/report-data/opportunities?page[number]=2>; rel="next",
+      </Api/V8/custom/report-data/opportunities?page[number]=25>; rel="last",
+      </Api/V8/custom/report-data/opportunities?page[number]=1>; rel="first"
 ```
 
 ### 8.4 CSV Headers
@@ -766,7 +766,7 @@ Content-Length: 52847
 ```javascript
 async function fetchOpportunityReport(filters) {
   try {
-    const response = await fetch(`/Api/V8/report-data/opportunities?${new URLSearchParams(filters)}`, {
+    const response = await fetch(`/Api/V8/custom/report-data/opportunities?${new URLSearchParams(filters)}`, {
       headers: {
         'Authorization': `Bearer ${accessToken}`,
         'Accept': 'application/vnd.api+json'

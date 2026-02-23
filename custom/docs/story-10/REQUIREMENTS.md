@@ -295,10 +295,10 @@ The API will follow the [JSON API v1.0 specification](https://jsonapi.org/format
     }
   },
   "links": {
-    "self": "/Api/V8/report-data/opportunities?page[number]=1&page[size]=50",
-    "first": "/Api/V8/report-data/opportunities?page[number]=1&page[size]=50",
-    "next": "/Api/V8/report-data/opportunities?page[number]=2&page[size]=50",
-    "last": "/Api/V8/report-data/opportunities?page[number]=25&page[size]=50"
+    "self": "/Api/V8/custom/report-data/opportunities?page[number]=1&page[size]=50",
+    "first": "/Api/V8/custom/report-data/opportunities?page[number]=1&page[size]=50",
+    "next": "/Api/V8/custom/report-data/opportunities?page[number]=2&page[size]=50",
+    "last": "/Api/V8/custom/report-data/opportunities?page[number]=25&page[size]=50"
   }
 }
 ```
@@ -473,12 +473,12 @@ ACLController::checkAccess('Opportunities', 'list', true)
 ### 7.1 API Endpoint
 
 **Method**: `GET`
-**Path**: `/Api/V8/report-data/opportunities`
-**Base URL**: `https://{suitecrm-domain}/Api/V8/report-data/opportunities`
+**Path**: `/Api/V8/custom/report-data/opportunities`
+**Base URL**: `https://{suitecrm-domain}/Api/V8/custom/report-data/opportunities`
 
 **Full Example**:
 ```
-GET /Api/V8/report-data/opportunities?sales_stage=Prospecting,Qualification&date_closed_period=this_quarter&page[size]=100&sort=-amount_usdollar
+GET /Api/V8/custom/report-data/opportunities?sales_stage=Prospecting,Qualification&date_closed_period=this_quarter&page[size]=100&sort=-amount_usdollar
 Authorization: Bearer {access_token}
 Accept: application/vnd.api+json
 ```
@@ -699,7 +699,7 @@ ORDER BY sum_amount_usdollar DESC
 
 ### 9.1 Functional Requirements
 
-✅ **FR-1**: API endpoint `/Api/V8/report-data/opportunities` returns valid JSON
+✅ **FR-1**: API endpoint `/Api/V8/custom/report-data/opportunities` returns valid JSON
 ✅ **FR-2**: All specified filters work correctly and return filtered datasets
 ✅ **FR-3**: Grouping and aggregations produce accurate calculations
 ✅ **FR-4**: Pagination returns correct page subsets with proper metadata
