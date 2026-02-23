@@ -288,47 +288,6 @@ class OpportunityReportDashlet extends DashletGeneric
     }
 
     /**
-     * Build query string from filters
-     *
-     * @param array $filters Filter parameters
-     * @return string Query string
-     */
-    private function buildQueryString($filters)
-    {
-        $params = array();
-
-        foreach ($filters as $key => $value) {
-            if ($key === 'page' && is_array($value)) {
-                $params['page[number]'] = $value['number'];
-                $params['page[size]'] = $value['size'];
-            } else {
-                $params[$key] = $value;
-            }
-        }
-
-        return http_build_query($params);
-    }
-
-    /**
-     * Get OAuth2 token for current user
-     *
-     * @return string|false OAuth2 token or false on failure
-     */
-    private function getOAuth2Token()
-    {
-        global $current_user;
-
-        // For dashlet context, we'll use a service account approach
-        // In production, you may want to implement proper OAuth2 token generation
-        // For now, we'll directly call the backend service without OAuth2
-
-        // Alternative: Return a placeholder and modify fetchReportData to call
-        // OpportunityReportService directly instead of via API
-
-        return 'dashlet_internal_token'; // Placeholder
-    }
-
-    /**
      * Get sales stage options
      *
      * @return array Sales stage options
