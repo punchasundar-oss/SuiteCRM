@@ -11,7 +11,7 @@
 
 **Branch**: `feature/10-test`
 **Main Branch**: `hotfix` (use for PRs)
-**Status**: Step 1 Complete ✅
+**Status**: Step 2 Complete ✅
 
 ### Story Definition
 Original requirement: "need reporting data" (vague)
@@ -25,11 +25,13 @@ Original requirement: "need reporting data" (vague)
    - Locked down requirements: Opportunities module, 12 filters, OAuth2, JSON API v1.0 spec
    - Endpoint: `GET /Api/V8/report-data/opportunities`
 
-2. **Backend Service** (Next Step)
-   - File: `custom/lib/ReportingData/OpportunityReportService.php`
-   - Query building, ACL enforcement, aggregations, pagination
+2. **Backend Service** ✅ COMPLETED
+   - File: `custom/lib/ReportingData/OpportunityReportService.php` (1,245 lines)
+   - 12 filters, 4 grouping fields, 6 aggregations implemented
+   - ACL enforcement, team security, parameterized queries
+   - Date period support (this_quarter, last_month, etc.)
 
-3. **V8 API Endpoint**
+3. **V8 API Endpoint** (Next Step)
    - Files: `custom/Api/V8/Controller/ReportDataController.php`, routes, params
    - OAuth2 authentication, JSON API response format
 
@@ -49,6 +51,7 @@ Original requirement: "need reporting data" (vague)
 | Auth | OAuth2 bearer tokens | Existing infrastructure |
 | Security | Module + record ACL | Leverage SuiteCRM security |
 | Aggregation | SQL GROUP BY | Performance, accuracy |
+| Backend | Custom service | AOR_Reports is UI-first, not API-first |
 
 ## Code Quality Standards
 
@@ -411,19 +414,17 @@ try {
 
 ## Next Steps for Story #10
 
-### Immediate Actions (Step 2)
-1. Create `custom/lib/ReportingData/OpportunityReportService.php`
-2. Implement core methods:
-   - `getOpportunities(array $filters, array $options): array`
-   - `getAggregatedReport(string $groupBy, array $filters, array $options): array`
-   - `validateFilters(array $filters): array`
-   - `buildQuery(array $filters, array $options): array`
-3. Add ACL integration using `ACLController`
-4. Test service independently with unit tests
-5. Commit: "Story #10: Backend OpportunityReportService implementation"
+### Immediate Actions (Step 3)
+1. Create `custom/Api/V8/Controller/ReportDataController.php`
+2. Implement controller methods:
+   - `getOpportunityReport(Request $request, Response $response): Response`
+   - Wire OpportunityReportService to API layer
+   - Format JSON API v1.0 responses
+3. Create `custom/Api/V8/Param/ReportDataParams.php` for parameter validation
+4. Register routes in `custom/Api/V8/Config/routes.php`
+5. Test API endpoint with OAuth2 authentication
 
 ### Future Steps
-- Step 3: API Controller + Routes + Param Middleware
 - Step 4: Dashboard Dashlet + Smarty Template
 - Step 5: Comprehensive Testing (Unit + API + Acceptance)
 
